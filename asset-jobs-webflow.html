@@ -1,0 +1,189 @@
+<style>
+  .job-results-wrapper,
+  #pagination-wrapper,
+  #wf-form-Career-Search-Form {
+    transition: opacity 0.5s;
+    opacity: 0;
+  }
+
+  body.ReactModal__Body--open {
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .search-input-wrapper {
+    position: relative;
+  }
+
+  .search-input-field {
+    padding-right: 40px !important;
+    background: no-repeat #ffffff 15px 50%;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNi41IDFDNS45OTQ3OSAxIDUuNTA3ODEgMS4wNjUxIDUuMDM5MDYgMS4xOTUzMUM0LjU3MDMxIDEuMzI1NTIgNC4xMzI4MSAxLjUxMDQyIDMuNzI2NTYgMS43NUMzLjMyMDMxIDEuOTg5NTggMi45NTA1MiAyLjI3NjA0IDIuNjE3MTkgMi42MDkzOEMyLjI4Mzg1IDIuOTQyNzEgMS45OTQ3OSAzLjMxNTEgMS43NSAzLjcyNjU2QzEuNTA1MjEgNC4xMzgwMiAxLjMyMDMxIDQuNTc1NTIgMS4xOTUzMSA1LjAzOTA2QzEuMDcwMzEgNS41MDI2IDEuMDA1MjEgNS45ODk1OCAxIDYuNUMxIDcuMDA1MjEgMS4wNjUxIDcuNDkyMTkgMS4xOTUzMSA3Ljk2MDk0QzEuMzI1NTIgOC40Mjk2OSAxLjUxMDQyIDguODY3MTkgMS43NSA5LjI3MzQ0QzEuOTg5NTggOS42Nzk2OSAyLjI3NjA0IDEwLjA0OTUgMi42MDkzOCAxMC4zODI4QzIuOTQyNzEgMTAuNzE2MSAzLjMxNTEgMTEuMDA1MiAzLjcyNjU2IDExLjI1QzQuMTM4MDIgMTEuNDk0OCA0LjU3NTUyIDExLjY3OTcgNS4wMzkwNiAxMS44MDQ3QzUuNTAyNiAxMS45Mjk3IDUuOTg5NTggMTEuOTk0OCA2LjUgMTJDNy4xNTEwNCAxMiA3Ljc3MzQ0IDExLjg5MDYgOC4zNjcxOSAxMS42NzE5QzguOTYwOTQgMTEuNDUzMSA5LjUxMDQyIDExLjEzOCAxMC4wMTU2IDEwLjcyNjZMMTYuMTQ4NCAxNi44NTE2QzE2LjI0NzQgMTYuOTUwNSAxNi4zNjQ2IDE3IDE2LjUgMTdDMTYuNjM1NCAxNyAxNi43NTI2IDE2Ljk1MDUgMTYuODUxNiAxNi44NTE2QzE2Ljk1MDUgMTYuNzUyNiAxNyAxNi42MzU0IDE3IDE2LjVDMTcgMTYuMzY0NiAxNi45NTA1IDE2LjI0NzQgMTYuODUxNiAxNi4xNDg0TDEwLjcyNjYgMTAuMDE1NkMxMS4xMzggOS41MTU2MiAxMS40NTMxIDguOTY4NzUgMTEuNjcxOSA4LjM3NUMxMS44OTA2IDcuNzgxMjUgMTIgNy4xNTYyNSAxMiA2LjVDMTIgNS45OTQ3OSAxMS45MzQ5IDUuNTA3ODEgMTEuODA0NyA1LjAzOTA2QzExLjY3NDUgNC41NzAzMSAxMS40ODk2IDQuMTMyODEgMTEuMjUgMy43MjY1NkMxMS4wMTA0IDMuMzIwMzEgMTAuNzI0IDIuOTUwNTIgMTAuMzkwNiAyLjYxNzE5QzEwLjA1NzMgMi4yODM4NSA5LjY4NDkgMS45OTQ3OSA5LjI3MzQ0IDEuNzVDOC44NjE5OCAxLjUwNTIxIDguNDI0NDggMS4zMjAzMSA3Ljk2MDk0IDEuMTk1MzFDNy40OTc0IDEuMDcwMzEgNy4wMTA0MiAxLjAwNTIxIDYuNSAxWk02LjUgMTFDNS44ODAyMSAxMSA1LjI5Njg4IDEwLjg4MjggNC43NSAxMC42NDg0QzQuMjAzMTIgMTAuNDE0MSAzLjcyNjU2IDEwLjA5MTEgMy4zMjAzMSA5LjY3OTY5QzIuOTE0MDYgOS4yNjgyMyAyLjU5Mzc1IDguNzkxNjcgMi4zNTkzOCA4LjI1QzIuMTI1IDcuNzA4MzMgMi4wMDUyMSA3LjEyNSAyIDYuNUMyIDUuODgwMjEgMi4xMTcxOSA1LjI5Njg4IDIuMzUxNTYgNC43NUMyLjU4NTk0IDQuMjAzMTIgMi45MDg4NSAzLjcyNjU2IDMuMzIwMzEgMy4zMjAzMUMzLjczMTc3IDIuOTE0MDYgNC4yMDgzMyAyLjU5Mzc1IDQuNzUgMi4zNTkzOEM1LjI5MTY3IDIuMTI1IDUuODc1IDIuMDA1MjEgNi41IDJDNy4xMTk3OSAyIDcuNzAzMTIgMi4xMTcxOSA4LjI1IDIuMzUxNTZDOC43OTY4OCAyLjU4NTk0IDkuMjczNDQgMi45MDg4NSA5LjY3OTY5IDMuMzIwMzFDMTAuMDg1OSAzLjczMTc3IDEwLjQwNjIgNC4yMDgzMyAxMC42NDA2IDQuNzVDMTAuODc1IDUuMjkxNjcgMTAuOTk0OCA1Ljg3NSAxMSA2LjVDMTEgNy4xMTk3OSAxMC44ODI4IDcuNzAzMTIgMTAuNjQ4NCA4LjI1QzEwLjQxNDEgOC43OTY4OCAxMC4wOTExIDkuMjczNDQgOS42Nzk2OSA5LjY3OTY5QzkuMjY4MjMgMTAuMDg1OSA4Ljc5MTY3IDEwLjQwNjIgOC4yNSAxMC42NDA2QzcuNzA4MzMgMTAuODc1IDcuMTI1IDEwLjk5NDggNi41IDExWiIgc3Ryb2tlPSIjOUFCNEMyIi8+PC9zdmc+");
+    ;
+    padding-left: 45px;
+  }
+
+  button.reset-button {
+    top: 0;
+    right: 10px;
+    bottom: 10px;
+    position: absolute;
+    width: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+
+  button.reset-button.reset-show:after {
+    display: inline-block;
+    content: "\00d7";
+    font-size: 25px;
+    color: #003e6b;
+    background: #F2F2F2;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+  }
+
+  .loader {
+    top: 2px;
+    background: transparent;
+    position: relative;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    animation: around 5.4s infinite;
+  }
+
+  @keyframes around {
+    0% {
+      transform: rotate(0deg)
+    }
+
+    100% {
+      transform: rotate(360deg)
+    }
+  }
+
+  .loader::after,
+  .loader::before {
+    content: "";
+    background: white;
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-width: 2px;
+    border-color: #003e6b #003e6b transparent transparent;
+    border-style: solid;
+    border-radius: 20px;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    animation: around 0.7s ease-in-out infinite;
+  }
+
+  .loader::after {
+    animation: around 0.7s ease-in-out 0.1s infinite;
+    background: transparent;
+  }
+
+  .modal-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 0;
+  }
+
+  .modal-wrapper h2 {
+    font-size: 36px;
+    color: #003e6b;
+  }
+
+  .modal-wrapper h3 {
+    font-size: 20px;
+    margin-bottom: 5px !important;
+  }
+
+  .modal-content {
+    overflow-y: scroll;
+    height: calc(100% - 40px);
+    padding: 0 30px;
+  }
+
+  .modal-close-button {
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 15px;
+    margin-left: calc(100% - 106px);
+    font-size: 16px;
+    border: 2px solid #E0E0E0;
+    border-radius: 16px;
+    padding: 5px 15px;
+    color: #003e6b;
+  }
+
+  .ReactModal__Content {
+    position: absolute !important;
+    top: 20% !important;
+    left: 50% !important;
+    right: 5% !important;
+    bottom: 0px !important;
+    border: 1px solid rgb(204, 204, 204) !important;
+    background: rgb(255, 255, 255) !important;
+    overflow: hidden !important;
+    border-radius: 4px !important;
+    outline: none !important;
+    padding: 0px !important;
+    margin-right: -50% !important;
+    transform: translate(-50%, -20%) !important;
+    max-width: 850px !important;
+  }
+
+  .modal-wrapper .jobDetailPadding {
+    border-bottom: 1px solid #E0E0E0;
+    margin: 0 -30px;
+    padding: 0 30px;
+  }
+
+  .apply-section-accepting {
+    border: 1px solid #e3e3e3;
+    padding: 10px;
+    text-align: left;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }
+
+  .apply-section-accepting-title {
+    color: #828282;
+  }
+
+  .apply-section-apply {
+    background-color: #aecb54;
+    color: black;
+    border-radius: 16px;
+    padding: 5px 20px;
+  }
+
+  @media (max-width: 767px) {
+    .jobDetailPadding tr {
+      display: block;
+    }
+
+    .jobDetailPadding .apply {
+      display: block;
+      margin: 10px 0px;
+    }
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-modal/3.11.2/react-modal.min.js"></script>
