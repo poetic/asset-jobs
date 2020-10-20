@@ -106,7 +106,7 @@ class Pagination extends React.Component {
       <React.Fragment>
         <div className="opportunities-hero-wrapper">
           <div className="div-block-186">
-            <h3>{loading ? 'Loading Job Postings..' : 'Find your next career tagline'}</h3>
+            <h3>{loading ? 'Loading Job Postings..' : 'Find your next career'}</h3>
             <div className="form-block w-form">
               <form id="wf-form-Career-Search-Form" name="wf-form-Career-Search-Form" className="form-2">
                 <div className="div-block-224 search-input-wrapper">
