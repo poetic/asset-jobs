@@ -145,6 +145,9 @@ class Pagination extends React.Component {
               </form>
             </div>
           </div>
+          <div className="opportunities-media-wrapper">
+            <div className="opportunities-media-overlay" />
+          </div>
         </div>
         <div className="job-results-wrapper">
           <div className="job-filters-wrapper">
