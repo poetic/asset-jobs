@@ -379,7 +379,7 @@ class App extends React.Component {
         State,
       }) => {
         const lowerCase = text => text.toLowerCase();
-        const regexFunc = fieldValueSearch => new RegExp(searchTerm).test(fieldValueSearch);
+        const regexFunc = fieldValueSearch => new RegExp(searchTerm.trim().toLowerCase()).test(fieldValueSearch);
 
         return regexFunc(lowerCase(Title))
           || regexFunc(lowerCase(City))
@@ -478,7 +478,7 @@ class App extends React.Component {
 
   setSearchTerm = (event) => {
     this.setState({
-      searchTerm: event.target.value.trim().toLowerCase(),
+      searchTerm: event.target.value,
       loadingResults: true
     });
   }
