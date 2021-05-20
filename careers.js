@@ -233,7 +233,7 @@ class Item extends React.Component {
       <React.Fragment>
         {data.map((item) => {
           const description = item.Description.replace(/<[^>]+>/g, '').replace(/; &nbsp;|&nbsp;/gi, '');
-          const city = item.City.toLowerCase().replace(/\b\w/g, l => _.capitalize(l));
+          const city = item.City.toLowerCase().trim().replace(/\b\w/g, l => _.capitalize(l));
           const title = item.Title.toLowerCase().replace(/\b\w/g, l => _.capitalize(l));
           const applyUntilTime = moment(item.CloseDate).format("MMMM D, YYYY [at] H:mm [CST]"); 
 
@@ -392,7 +392,7 @@ class App extends React.Component {
       });
 
       const filteredByCities = filteredByState.filter(({ City }) => {
-        const cityNormalized = City.toLowerCase().replace(/\b\w/g, l => _.capitalize(l));
+        const cityNormalized = City.toLowerCase().trim().replace(/\b\w/g, l => _.capitalize(l));
 
         if (selectedCities.length) {
           return selectedCities.includes(cityNormalized)
@@ -446,7 +446,7 @@ class App extends React.Component {
     if (selectedState) {
       const filteredCities = this.allJobListings.reduce((prevResult, jobListing) => {
         const { City, State } = jobListing;
-        const cityNormalized = City.toLowerCase().replace(/\b\w/g, l => _.capitalize(l));
+        const cityNormalized = City.toLowerCase().trim().replace(/\b\w/g, l => _.capitalize(l));
 
         if (State === selectedState) {
           if (!prevResult.includes(cityNormalized)) {
@@ -464,7 +464,7 @@ class App extends React.Component {
         cities: _.sortBy(filteredCities),
       })
     } else {
-      const cities = _.sortBy(_.uniq(this.allJobListings.map(({ City }) => City.toLowerCase().replace(/\b\w/g, l => _.capitalize(l)))));
+      const cities = _.sortBy(_.uniq(this.allJobListings.map(({ City }) => City.toLowerCase().trim().replace(/\b\w/g, l => _.capitalize(l)))));
       this.setState({
         selectedState,
         selectedCities: [],
