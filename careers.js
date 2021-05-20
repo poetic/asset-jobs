@@ -304,6 +304,7 @@ class App extends React.Component {
     const baseUrl = 'https://setup.swbcpeosms.com/public/api/JobPosting/GetCareerPortalOpenRequisitions'
 
     return Promise.all([
+      // Asset Residential
       axios.get(`${baseUrl}?id=ba2a034d-57c4-4b52-9ab0-c8247cd7e5ed`, {
       }).then(({ data }) => {
         const res = _.get(data, 'ResultList', []);
@@ -313,7 +314,48 @@ class App extends React.Component {
         }
         ))
       }),
+      // Asset Corporate
       axios.get(`${baseUrl}?id=6f8fcc16-7bdb-4a82-b28f-6fd8e3b0e2c7`, {
+      }).then(({ data }) => {
+        const res = _.get(data, 'ResultList', []);
+        return res.map((obj) => ({
+          ...obj,
+          Type: 'corporate',
+        }
+        ))
+      }),
+      // ABRES Residential
+      axios.get(`${baseUrl}?id=5f84122b-4544-412e-a81f-a4a2bd6da456`, {
+      }).then(({ data }) => {
+        const res = _.get(data, 'ResultList', []);
+        return res.map((obj) => ({
+          ...obj,
+          Type: 'property',
+        }
+        ))
+      }),
+      // Shelton Residential
+      axios.get(`${baseUrl}?id=dbd73b24-6a77-40d3-8660-18bc932a28c6`, {
+      }).then(({ data }) => {
+        const res = _.get(data, 'ResultList', []);
+        return res.map((obj) => ({
+          ...obj,
+          Type: 'property',
+        }
+        ))
+      }),
+      // ABRES Corporate
+      axios.get(`${baseUrl}?id=b361be71-34f2-478d-a14c-5df623c0086b`, {
+      }).then(({ data }) => {
+        const res = _.get(data, 'ResultList', []);
+        return res.map((obj) => ({
+          ...obj,
+          Type: 'corporate',
+        }
+        ))
+      }),
+      // Shelton Corporate
+      axios.get(`${baseUrl}?id=71085fbf-a0c2-42b0-9923-eff62b48d38e`, {
       }).then(({ data }) => {
         const res = _.get(data, 'ResultList', []);
         return res.map((obj) => ({
