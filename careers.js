@@ -371,7 +371,7 @@ class App extends React.Component {
     const data = await this.fetchListings();
     this.allJobListings = _.flatten(data);
     const states = _.sortBy(_.uniq(this.allJobListings.map(({ State }) => State)));
-    const cities = _.sortBy(_.uniq(this.allJobListings.map(({ City }) => City.toLowerCase().replace(/\b\w/g, l => _.capitalize(l)))));
+    const cities = _.sortBy(_.uniq(this.allJobListings.map(({ City }) => City.toLowerCase().trim().replace(/\b\w/g, l => _.capitalize(l)))));
     
     this.setState({
       loading: false,
