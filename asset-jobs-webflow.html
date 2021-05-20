@@ -143,6 +143,10 @@
     max-width: 850px !important;
   }
 
+  .ReactModal__Overlay.ReactModal__Overlay--after-open {
+    background-color: rbba(0, 0, 0, 0.5) !important;
+  }
+
   .modal-wrapper .jobDetailPadding {
     border-bottom: 1px solid #E0E0E0;
     margin: 0 -30px;
@@ -155,6 +159,8 @@
     text-align: left;
     margin-bottom: 20px;
     border-radius: 4px;
+    visibility: hidden;
+    user-select: none;
   }
 
   .apply-section-accepting-title {
@@ -178,6 +184,13 @@
       margin: 10px 0px;
     }
   }
+  /* Fix for page jump issue on checkbox select */
+  /* https://stackoverflow.com/questions/17974108/how-can-i-prevent-the-browser-from-scrolling-on-top-of-the-page-when-clicking-th/ */
+  .filter-checkboxes.w-form label {
+  	display: block;
+  	position: relative;
+  	overflow: hidden;
+  }
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.production.min.js"></script>
@@ -187,4 +200,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-modal/3.11.2/react-modal.min.js"></script>
-<script type="text/jsx" src="https://cdn.jsdelivr.net/gh/poetic/asset-jobs@a02f67db8984749beb7e06065e9953a4c4c68c8f/careers.js"></script>
+<script type="text/jsx" src="https://cdn.jsdelivr.net/gh/poetic/asset-jobs@03502e09ee4bb3c4082ba2defe60f80d61bc5ac14/careers.js"></script>
