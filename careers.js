@@ -237,6 +237,14 @@ class Item extends React.Component {
           const title = item.Title.toLowerCase().replace(/\b\w/g, l => _.capitalize(l));
           const applyUntilTime = moment(item.CloseDate).format("MMMM D, YYYY [at] H:mm [CST]"); 
 
+          let communityText = '';
+          const itemLocationPreComma = item.Location.split(', ')[0];
+          const itemLocationPostComma = item.Location.split(', ')[1];
+          
+          if (itemLocationPreComma !== item.City && itemLocationPostComma !== item.State) {
+            communityText = item.Location.trim().substring(7);
+          }
+
           // Add apply section to LongDescription from asset API
           const JobModalHtml = document.createElement('div');
           JobModalHtml.innerHTML = item.LongDescription;
@@ -252,6 +260,15 @@ class Item extends React.Component {
             </div>`
           applySection.innerHTML = applyString;
 
+          if (communityText) {
+            const detailSection = JobModalHtml.getElementsByClassName('jobDetailPadding')[0];
+            const detailItems = detailSection.getElementsByTagName("span")[0]
+            const communityLeft = document.createElement("b");
+            communityLeft.innerHTML = "Community:";
+            detailItems.insertBefore(communityLeft, detailItems.firstChild);
+            communityLeft.insertAdjacentText("afterend", ` ${communityText}`);
+          }
+
           const wrapper = document.createElement("div");
           wrapper.appendChild(JobModalHtml);
           const JobModalHtmlComplete = wrapper.innerHTML;
@@ -261,7 +278,7 @@ class Item extends React.Component {
               <div className="job-card elevated-0">
                 <div className="job-card-left-col">
                   <div className="job-card-position">{title}</div>
-                  <div className="job-card-location">{city}, {item.State}</div>
+                  <div className="job-card-location">{communityText ? `${communityText}, ` : ''}{city}, {item.State}</div>
                 </div>
                 <div className="job-card-right-col">
                   <div className="job-card-preview-snippet">{this.truncate(description)}</div>
