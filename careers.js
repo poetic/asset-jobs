@@ -260,6 +260,15 @@ class Item extends React.Component {
             </div>`
           applySection.innerHTML = applyString;
 
+          if (communityText) {
+            const detailSection = document.getElementsByClassName('jobDetailPadding')[0];
+            const detailItems = detailSection.getElementsByTagName("span")[0]
+            const communityLeft = document.createElement("b");
+            communityLeft.innerHTML = "Community:";
+            detailItems.insertBefore(communityLeft, detailItems.firstChild);
+            communityLeft.insertAdjacentText("afterend", ` ${communityText}`);
+          }
+
           const wrapper = document.createElement("div");
           wrapper.appendChild(JobModalHtml);
           const JobModalHtmlComplete = wrapper.innerHTML;
