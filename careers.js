@@ -242,7 +242,7 @@ class Item extends React.Component {
           const itemLocationPostComma = item.Location.split(', ')[1];
           
           if (itemLocationPreComma !== item.City && itemLocationPostComma !== item.State) {
-            communityText = `${item.Location.toLowerCase().trim().replace(/\b\w/g, l => _.capitalize(l)).substring(7)}, `
+            communityText = item.Location.toLowerCase().trim().replace(/\b\w/g, l => _.capitalize(l)).substring(7);
           }
 
           // Add apply section to LongDescription from asset API
@@ -278,7 +278,7 @@ class Item extends React.Component {
               <div className="job-card elevated-0">
                 <div className="job-card-left-col">
                   <div className="job-card-position">{title}</div>
-                  <div className="job-card-location">{communityText}{city}, {item.State}</div>
+                  <div className="job-card-location">{communityText ? `${communityText}, ` : ''}{city}, {item.State}</div>
                 </div>
                 <div className="job-card-right-col">
                   <div className="job-card-preview-snippet">{this.truncate(description)}</div>
