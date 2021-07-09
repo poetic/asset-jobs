@@ -242,7 +242,7 @@ class Item extends React.Component {
           const itemLocationPostComma = item.Location.split(', ')[1];
           
           if (itemLocationPreComma !== item.City && itemLocationPostComma !== item.State) {
-            communityText = item.Location.toLowerCase().trim().replace(/\b\w/g, l => _.capitalize(l)).substring(7);
+            communityText = item.Location.trim().substring(7);
           }
 
           // Add apply section to LongDescription from asset API
