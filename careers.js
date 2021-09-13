@@ -189,6 +189,16 @@ class Pagination extends React.Component {
                     </label>
                 </div>
               </div>
+              <div className="job-filter-section">
+                <div className="heading-6">Refine by job position</div>
+                <div className="filter-checkboxes w-form">
+                  <label className="w-checkbox filter-checkbox-wrapper">
+                    <div className={`w-checkbox-input w-checkbox-input--inputType-custom filter-checkbox w--redirected-checked`} />
+                    <input type="checkbox" id={'Superviser'} name={'Superviser'} checked onChange={() => console.log('updated!')} value={'Superviser'} style={{ opacity: 0, position: 'absolute', zIndex: -1 }} />
+                    <span htmlFor={'Superviser'} className="filter-checkbox-label w-form-label">Superviser</span>
+                  </label>
+                </div>
+              </div>
               <div className="job-filter-section last-child">
                 <div className="heading-6">Refine by location</div>
                 <div className="filter-checkboxes w-form">
