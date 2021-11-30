@@ -381,6 +381,16 @@ class App extends React.Component {
         }
         ))
       }),
+      // Dallas West Residential
+      axios.get(`${baseUrl}?id=febc91d1-934a-46fe-8395-2a4d3be6f086`, {
+      }).then(({ data }) => {
+        const res = _.get(data, 'ResultList', []);
+        return res.map((obj) => ({
+          ...obj,
+          Type: 'property',
+        }
+        ))
+      }),
     ])
   }
 
