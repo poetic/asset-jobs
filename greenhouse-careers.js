@@ -23,7 +23,7 @@ class Pagination extends React.Component {
   }
 
   componentWillMount() {
-    ReactModal.setAppElement("#career-opportunities");
+    ReactModal.setAppElement('#career-opportunities');
     this.resetPage();
   }
 
@@ -33,15 +33,9 @@ class Pagination extends React.Component {
     }
 
     if (this.props.loading !== prevProps.loading) {
-      const jobResultsWrapper = document.getElementsByClassName(
-        "job-results-wrapper"
-      )[0];
-      const paginationContainer = document.getElementById(
-        "pagination-container"
-      );
-      const filterDropdowns = document.getElementById(
-        "wf-form-Career-Search-Form"
-      );
+      const jobResultsWrapper = document.getElementsByClassName('job-results-wrapper')[0];
+      const paginationContainer = document.getElementById('pagination-container');
+      const filterDropdowns = document.getElementById('wf-form-Career-Search-Form');
 
       jobResultsWrapper.style.opacity = 1;
       paginationContainer.style.opacity = 1;
@@ -57,18 +51,56 @@ class Pagination extends React.Component {
     const { pageCount, currentPage } = this.state;
     let controls = [];
 
-    for (let i = 1; i <= pageCount; i++) {
+    controls.push(
+      <React.Fragment>
+        <div
+          style={{
+            cursor: currentPage > 1 ? 'pointer' : 'not-allowed',
+            backgroundColor: currentPage > 1 ? 'white' : 'lightgrey',
+            color: currentPage > 1 ? '#003e6b' : 'grey',
+            fontWeight: 'bold',
+            borderRadius: '0.15em',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1)',
+            margin: '0.25em 0.25em',
+            padding: '0.5em 0.75em',
+          }}
+          onClick={currentPage > 1 ? () => this.setCurrentPage(1) : null}
+        >
+          {'<<'}
+        </div>
+
+        <div
+          style={{
+            cursor: currentPage > 1 ? 'pointer' : 'not-allowed',
+            backgroundColor: currentPage > 1 ? 'white' : 'lightgrey',
+            color: currentPage > 1 ? '#003e6b' : 'grey',
+            fontWeight: 'bold',
+            borderRadius: '0.15em',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1)',
+            margin: '0.25em 0.25em',
+            padding: '0.5em 0.75em',
+          }}
+          onClick={currentPage > 1 ? () => this.setCurrentPage(currentPage - 1) : null}
+        >
+          {'<'}
+        </div>
+      </React.Fragment>
+    );
+
+    for (let i = currentPage - 2; i <= pageCount && i <= currentPage + 2; i++) {
+      if (i < 1) continue;
+
       if (i === currentPage) {
         controls.push(
           <div
             style={{
-              cursor: "pointer",
-              backgroundColor: "#003e6b",
-              color: "white",
-              borderRadius: "0.15em",
-              boxShadow: "0 1px 1px rgba(0, 0, 0, 0.1)",
-              margin: "0.25em 0.25em",
-              padding: "0.5em 0.75em",
+              cursor: 'pointer',
+              backgroundColor: '#003e6b',
+              color: 'white',
+              borderRadius: '0.15em',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1)',
+              margin: '0.25em 0.25em',
+              padding: '0.5em 0.75em',
             }}
             onClick={() => this.setCurrentPage(i)}
           >
@@ -79,12 +111,12 @@ class Pagination extends React.Component {
         controls.push(
           <div
             style={{
-              cursor: "pointer",
-              backgroundColor: "white",
-              borderRadius: "0.15em",
-              boxShadow: "0 1px 1px rgba(0, 0, 0, 0.1)",
-              margin: "0.25em 0.25em",
-              padding: "0.5em 0.75em",
+              cursor: 'pointer',
+              backgroundColor: 'white',
+              borderRadius: '0.15em',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1)',
+              margin: '0.25em 0.25em',
+              padding: '0.5em 0.75em',
             }}
             onClick={() => this.setCurrentPage(i)}
           >
@@ -93,6 +125,42 @@ class Pagination extends React.Component {
         );
       }
     }
+
+    controls.push(
+      <React.Fragment>
+        <div
+          style={{
+            cursor: currentPage < pageCount ? 'pointer' : 'not-allowed',
+            backgroundColor: currentPage < pageCount ? 'white' : 'lightgrey',
+            color: currentPage < pageCount ? '#003e6b' : 'grey',
+            fontWeight: 'bold',
+            borderRadius: '0.15em',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1)',
+            margin: '0.25em 0.25em',
+            padding: '0.5em 0.75em',
+          }}
+          onClick={currentPage < pageCount ? () => this.setCurrentPage(currentPage + 1) : null}
+        >
+          {'>'}
+        </div>
+
+        <div
+          style={{
+            cursor: currentPage < pageCount ? 'pointer' : 'not-allowed',
+            backgroundColor: currentPage < pageCount ? 'white' : 'lightgrey',
+            color: currentPage < pageCount ? '#003e6b' : 'grey',
+            fontWeight: 'bold',
+            borderRadius: '0.15em',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.1)',
+            margin: '0.25em 0.25em',
+            padding: '0.5em 0.75em',
+          }}
+          onClick={currentPage < pageCount ? () => this.setCurrentPage(pageCount) : null}
+        >
+          {'>>'}
+        </div>
+      </React.Fragment>
+    );
     return controls;
   }
 
@@ -124,9 +192,7 @@ class Pagination extends React.Component {
       <React.Fragment>
         <div className="opportunities-hero-wrapper">
           <div className="div-block-186">
-            <h3>
-              {loading ? "Loading Job Postings.." : "Find your next career"}
-            </h3>
+            <h3>{loading ? 'Loading Job Postings..' : 'Find your next career'}</h3>
             <div className="form-block w-form">
               <form
                 id="wf-form-Career-Search-Form"
@@ -147,9 +213,7 @@ class Pagination extends React.Component {
                   />
                   {searchTerm && (
                     <button
-                      className={`reset-button ${
-                        loadingResults ? "" : "reset-show"
-                      }`}
+                      className={`reset-button ${loadingResults ? '' : 'reset-show'}`}
                       onClick={setSearchTerm}
                     >
                       {loadingResults && <i class="loader"></i>}
@@ -169,14 +233,12 @@ class Pagination extends React.Component {
               href="#"
               className="div-block-217 w-inline-block"
               onClick={(e) => {
-                var dropdownEl = document.getElementsByClassName(
-                  "filter-dropdown-wrapper"
-                )[0];
+                var dropdownEl = document.getElementsByClassName('filter-dropdown-wrapper')[0];
                 const display = dropdownEl.style.display;
-                if (!display || display === "none") {
-                  dropdownEl.style.display = "block";
+                if (!display || display === 'none') {
+                  dropdownEl.style.display = 'block';
                 } else {
-                  dropdownEl.style.display = "none";
+                  dropdownEl.style.display = 'none';
                 }
               }}
             >
@@ -194,15 +256,10 @@ class Pagination extends React.Component {
                 <div className="filter-checkboxes w-form">
                   {types.map((type) => {
                     return (
-                      <label
-                        key={type}
-                        className="w-checkbox filter-checkbox-wrapper"
-                      >
+                      <label key={type} className="w-checkbox filter-checkbox-wrapper">
                         <div
                           className={`w-checkbox-input w-checkbox-input--inputType-custom filter-checkbox ${
-                            selectedTypes.includes(type)
-                              ? "w--redirected-checked"
-                              : ""
+                            selectedTypes.includes(type) ? 'w--redirected-checked' : ''
                           }`}
                         />
                         <input
@@ -214,14 +271,11 @@ class Pagination extends React.Component {
                           value={type}
                           style={{
                             opacity: 0,
-                            position: "absolute",
+                            position: 'absolute',
                             zIndex: -1,
                           }}
                         />
-                        <span
-                          htmlFor={type}
-                          className="filter-checkbox-label w-form-label"
-                        >
+                        <span htmlFor={type} className="filter-checkbox-label w-form-label">
                           {type}
                         </span>
                       </label>
@@ -234,15 +288,10 @@ class Pagination extends React.Component {
                 <div className="filter-checkboxes w-form">
                   {cities.map((city) => {
                     return (
-                      <label
-                        key={city}
-                        className="w-checkbox filter-checkbox-wrapper"
-                      >
+                      <label key={city} className="w-checkbox filter-checkbox-wrapper">
                         <div
                           className={`w-checkbox-input w-checkbox-input--inputType-custom filter-checkbox ${
-                            selectedCities.includes(city)
-                              ? "w--redirected-checked"
-                              : ""
+                            selectedCities.includes(city) ? 'w--redirected-checked' : ''
                           }`}
                         />
                         <input
@@ -254,14 +303,11 @@ class Pagination extends React.Component {
                           value={city}
                           style={{
                             opacity: 0,
-                            position: "absolute",
+                            position: 'absolute',
                             zIndex: -1,
                           }}
                         />
-                        <span
-                          htmlFor={city}
-                          className="filter-checkbox-label w-form-label"
-                        >
+                        <span htmlFor={city} className="filter-checkbox-label w-form-label">
                           {city}
                         </span>
                       </label>
@@ -281,9 +327,9 @@ class Pagination extends React.Component {
           id="pagination-container"
           className="career-pagination-wrapper w-container"
           style={{
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
           }}
         >
           {this.createControls()}
@@ -294,8 +340,7 @@ class Pagination extends React.Component {
 }
 
 class Item extends React.Component {
-  truncate = (input) =>
-    input.length > 5 ? `${input.substring(0, 100)}...` : input;
+  truncate = (input) => (input.length > 5 ? `${input.substring(0, 100)}...` : input);
 
   render() {
     const { data, loadingResults, openModal } = this.props;
@@ -308,32 +353,30 @@ class Item extends React.Component {
       <React.Fragment>
         {data.map((item) => {
           const content = _.unescape(item.content);
-          const index = content.indexOf("</strong>");
-          const index2 = content.indexOf("</strong>", index + 1); // Find paragraph after second bolded heading
-          const start = content.indexOf("<p>", index2 + 1);
-          const end = content.indexOf("</p>", start);
+          const index = content.indexOf('</strong>');
+          const index2 = content.indexOf('</strong>', index + 1); // Find paragraph after second bolded heading
+          const start = content.indexOf('<p>', index2 + 1);
+          const end = content.indexOf('</p>', start);
           // Might be better to use regex
           const description = content
             .slice(start, end)
-            .replace(/<[^>]+>/g, "")
-            .replace(/; &nbsp;|&nbsp;/gi, "");
+            .replace(/<[^>]+>/g, '')
+            .replace(/; &nbsp;|&nbsp;/gi, '');
           const city = item.location.name.trim();
-          const title = item.title
-            .toLowerCase()
-            .replace(/\b\w/g, (l) => _.capitalize(l));
+          const title = item.title.toLowerCase().replace(/\b\w/g, (l) => _.capitalize(l));
 
           // Add apply section to LongDescription from asset API
-          const JobModalHtml = document.createElement("div");
+          const JobModalHtml = document.createElement('div');
           JobModalHtml.innerHTML = item.content;
-          const applySection = document.createElement("div");
-          const JobModalHeader = document.createElement("div");
+          const applySection = document.createElement('div');
+          const JobModalHeader = document.createElement('div');
           JobModalHeader.innerHTML = `
             <h2>${item.title}</h2>
             <div class="location">Location: ${item.location.name}</div>
             <br>
           `;
 
-          const applyUrl = item.absolute_url + "#app";
+          const applyUrl = item.absolute_url + '#app';
           const applyString = `
             <div class="apply-section-wrapper">
               <div class="apply-section-accepting">
@@ -344,7 +387,7 @@ class Item extends React.Component {
             </div>`;
           applySection.innerHTML = applyString;
 
-          const wrapper = document.createElement("div");
+          const wrapper = document.createElement('div');
           wrapper.appendChild(JobModalHeader);
           wrapper.appendChild(JobModalHtml);
           wrapper.appendChild(applySection);
@@ -358,9 +401,7 @@ class Item extends React.Component {
                   <div className="job-card-location">{city}</div>
                 </div>
                 <div className="job-card-right-col">
-                  <div className="job-card-preview-snippet">
-                    {this.truncate(description)}
-                  </div>
+                  <div className="job-card-preview-snippet">{this.truncate(description)}</div>
                   <div className="job-card-cta-wrapper">
                     <a
                       href="#"
@@ -392,15 +433,14 @@ class App extends React.Component {
     loading: true,
     selectedCities: [],
     selectedTypes: [],
-    searchTerm: "",
+    searchTerm: '',
     loadingResults: false,
     jobListings: [],
     modal: null,
   };
 
   fetchListings = () => {
-    const baseUrl =
-      "https://boards-api.greenhouse.io/v1/boards/assetliving/jobs?content=true";
+    const baseUrl = 'https://boards-api.greenhouse.io/v1/boards/assetliving/jobs?content=true';
     return axios.get(`${baseUrl}`);
   };
 
@@ -414,8 +454,7 @@ class App extends React.Component {
     const types = _.sortBy(
       _.uniq(
         this.allJobListings.map(
-          ({ metadata }) =>
-            metadata.find(({ name }) => name === "Careers Page Job Type").value
+          ({ metadata }) => metadata.find(({ name }) => name === 'Careers Page Job Type').value
         )
       )
     );
@@ -447,9 +486,7 @@ class App extends React.Component {
       });
 
       const filteredbyType = filteredByCities.filter(({ metadata }) => {
-        const typeNormalized = metadata.find(
-          ({ name }) => name === "Careers Page Job Type"
-        ).value;
+        const typeNormalized = metadata.find(({ name }) => name === 'Careers Page Job Type').value;
 
         if (selectedTypes.length) {
           return selectedTypes.includes(typeNormalized);
@@ -458,18 +495,13 @@ class App extends React.Component {
         return true;
       });
 
-      const filteredBySearchterm = _.filter(
-        filteredbyType,
-        ({ location, title }) => {
-          const lowerCase = (text) => text.toLowerCase();
-          const regexFunc = (fieldValueSearch) =>
-            new RegExp(searchTerm.trim().toLowerCase()).test(fieldValueSearch);
+      const filteredBySearchterm = _.filter(filteredbyType, ({ location, title }) => {
+        const lowerCase = (text) => text.toLowerCase();
+        const regexFunc = (fieldValueSearch) =>
+          new RegExp(searchTerm.trim().toLowerCase()).test(fieldValueSearch);
 
-          return (
-            regexFunc(lowerCase(title)) || regexFunc(lowerCase(location.name))
-          );
-        }
-      );
+        return regexFunc(lowerCase(title)) || regexFunc(lowerCase(location.name));
+      });
 
       this.setState({
         jobListings: filteredBySearchterm,
@@ -602,4 +634,4 @@ class App extends React.Component {
     );
   }
 }
-ReactDOM.render(<App />, document.getElementById("career-opportunities"));
+ReactDOM.render(<App />, document.getElementById('career-opportunities'));
