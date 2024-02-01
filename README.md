@@ -1,19 +1,37 @@
-# Asset Jobs
+# React Webapp Template
 
-Application for displaying and linking to open positions using the greenhouse API
+This is a template for bootstrapping React based webapps for use within Poetic Labs
 
-## Deployment
+## Overview of Installed Features
 
-Application is currently deployed via JSDelivr and including the dependecty libraries via script tabs on the page.
+- Vite
+  - Vite used to bundle and serve dev environment using typescript + swc for speed of development
+  - type libraries for vite & react installed in dev dependencies
+- ESLint
+  - Linting provided by ESLint to ensure code quality
+  - Formatting handled by Prettier
+- Prettier
+  - Prettier configured to maintain formatting between devs and cut down on large commit changes caused by formatting whole file
+- Husky
+  - Installed to handle git hooks currently only configured with pre-commit
+- Lint-Staged
+  - Installed and configured to lint, fix if possible, and format all staged files
 
-Currently the deployment is set to follow the main branch
+## How to use
 
-## Setup
+Click "Use this template" in the upper right of the repo page on github.
 
-Using VSCode live server serve the `asset-jobs-webflow.html` file and changes made to `greenhouse-careers.js` will automatically update
+### Scripts
 
-## Legacy Codebase
-
-This is a legacy codebase and any significant changes should warrant a refactor/update of current implementation using functional components and a current version of react.
-
-Ideally this application would have a build process and CICD pipeline attached so that this can be a traditional react application with one tag required to embed.
+- `dev`
+  - Runs development server
+- `build`
+  - Builds application in /dist directory
+- `lint`
+  - Lints all configured files,
+- `preview`: "vite preview",
+  - Previews built application
+- `prettier:check`
+  - Checks that all files match prettier configuration
+- `prepare`
+  - Installs husky into git repo
