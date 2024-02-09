@@ -2,7 +2,6 @@
 #pagination-wrapper,
 #wf-form-Career-Search-Form {
   transition: opacity 0.5s;
-  opacity: 0;
 }
 
 body.ReactModal__Body--open {
