@@ -1,0 +1,60 @@
+.jobList {
+  width: 100%;
+  border-right: 1px solid var(--quinary-color);
+  height: 100%;
+}
+
+.jobItem {
+  padding: 1em 2em;
+  border: 1px solid var(--quinary-color);
+  border-left: none;
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 1em;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.jobItem:first-of-type {
+  border-top: none;
+}
+
+.jobItem:last-of-type {
+  border-bottom: none;
+}
+
+.jobItem * {
+  margin: 0;
+  color: var(--quaternary-color);
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.jobItem h3,
+.jobItem h4 {
+  -webkit-line-clamp: 1;
+}
+
+.jobItem p {
+  -webkit-line-clamp: 2;
+}
+
+.noResults {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--quaternary-color);
+  flex: 1;
+}
+
+@media only screen and (min-width: 1024px) {
+  .selected {
+    background-color: hsla(0, 0%, 96%, 1);
+  }
+}

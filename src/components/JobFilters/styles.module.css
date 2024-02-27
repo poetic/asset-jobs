@@ -1,0 +1,166 @@
+.jobFilters {
+  margin-bottom: 2rem;
+  width: 100%;
+  position: relative;
+}
+
+.jobFilters * {
+  font-size: 1em;
+}
+
+.jobFilters label {
+  display: block;
+  color: var(--quaternary-color);
+}
+
+.jobFilters button {
+  color: var(--quaternary-color);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.jobFilters input {
+  padding: 15px 1em;
+  margin-bottom: 1em;
+  border: 1px solid var(--quaternary-color);
+}
+
+.inputWrapper {
+  width: calc(50% - 2em);
+}
+
+.dropdown {
+  background-color: white !important;
+  border: 1px solid var(--quaternary-color);
+  z-index: 2;
+}
+
+.dropdown ul {
+  background-color: white !important;
+  border: 1px solid var(--quaternary-color);
+  border-top: none;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.rowCenter {
+  justify-content: center;
+  align-items: center;
+}
+
+.row .row {
+  margin-bottom: 0.5em;
+}
+
+.row.column {
+  flex-direction: column;
+}
+
+.clearFilter {
+  color: var(--ui-color) !important;
+  background: var(--quaternary-color) !important;
+  border: 1px solid var(--quaternary-color) !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 1em;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  cursor: unset !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.visible {
+  opacity: 1;
+  cursor: pointer !important;
+}
+
+.typeFilter {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  justify-self: center;
+}
+
+.typeFilter button {
+  color: var(--quaternary-color);
+  border: none;
+  background: none;
+  padding: 1em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border 0.3s ease-in-out;
+}
+
+button.active {
+  border: 1px solid var(--quaternary-color);
+}
+
+.sortBy {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  color: var(--quaternary-color);
+  background-color: transparent;
+  border: none;
+  opacity: 0;
+}
+
+@media only screen and (max-width: 900px) {
+  .jobFilters {
+    margin: 0;
+  }
+
+  .mobileHide {
+    display: none;
+  }
+
+  .clearFilter {
+    position: relative;
+    margin-bottom: 1em;
+    display: none;
+  }
+
+  .clearFilter.visible {
+    display: flex;
+  }
+
+  .mobileFlexColumn {
+    flex-direction: column;
+    margin-bottom: 1em;
+  }
+
+  .inputWrapper {
+    width: 100%;
+  }
+
+  .inputWrapper label {
+    display: none;
+  }
+
+  .inputWrapper input {
+    margin: 0;
+  }
+
+  .row {
+    margin-bottom: 1em;
+  }
+
+  .typeFilter {
+    align-items: flex-start;
+    justify-content: space-between;
+    flex: 1;
+    gap: 3px;
+    flex-wrap: wrap;
+  }
+}

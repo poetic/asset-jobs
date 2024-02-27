@@ -1,0 +1,93 @@
+.jobDetails {
+  border-left: 1px solid var(--quinary-color);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: 100%;
+  align-items: stretch;
+  justify-content: start;
+}
+
+.jobDetailsHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  gap: 0.5em;
+  background-color: var(--quaternary-color);
+  color: white;
+  padding: 1em 2em;
+}
+
+.jobDetailsHeader * {
+  margin: 0;
+  font-weight: 400;
+}
+
+.jobDetailsHeader h1 {
+  margin-bottom: 0.5em;
+}
+
+.jobDetails h2 {
+  font-weight: 600;
+  font-size: 1.25em;
+}
+
+.jobDetailsHeader button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 1em 2em;
+  cursor: pointer;
+  margin-top: 1em;
+  font-size: 0.95em;
+}
+
+.jobDetailsContent {
+  padding: 1em 2em;
+  overflow-y: scroll;
+  flex-grow: 1;
+  color: var(--quaternary-color);
+}
+
+.jobDetailsContent::-webkit-scrollbar {
+  background-color: transparent;
+  width: 1em;
+}
+
+.jobDetailsContent::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.jobDetailsContent::-webkit-scrollbar-thumb {
+  background-color: var(--quaternary-color);
+  border-radius: 1em;
+  border: 0.4em solid white;
+}
+
+.showMobile {
+  display: none;
+}
+
+.backArrow {
+  height: 1.5em;
+  width: 1.5em;
+  padding: 1em 0;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+  .jobDetailsContent {
+    padding: 0 1em;
+    display: block;
+  }
+
+  .jobDetailsHeader {
+    padding: 1em;
+  }
+
+  .showMobile {
+    display: block;
+  }
+}

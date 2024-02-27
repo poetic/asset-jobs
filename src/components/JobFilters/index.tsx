@@ -1,123 +1,109 @@
+import { IoMdClose } from 'react-icons/io';
+
+import { Dropdown } from '../';
+
+import styles from './styles.module.css';
+
 interface JobFiltersProps {
   cities: string[];
   types: string[];
+  searchTerm: string;
   selectedCities: string[];
   selectedTypes: string[];
-  setSelectedCities: React.Dispatch<React.SetStateAction<string[]>>;
-  setSelectedTypes: React.Dispatch<React.SetStateAction<string[]>>;
+  handleSetSelectedCities: (value: unknown) => void;
+  handlerCitiesClear: () => void;
+  handleFilterReset: () => void;
+  handleSearchTermChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSearchReset: () => void;
+  handleSetSelectedTypes: (e: React.ChangeEvent<HTMLButtonElement>) => void;
+  handleTypesClear: () => void;
 }
 
 export default function JobFilters({
   cities,
   types,
+  searchTerm,
   selectedCities,
   selectedTypes,
-  setSelectedCities,
-  setSelectedTypes,
+  handleSetSelectedCities,
+  handlerCitiesClear,
+  handleFilterReset,
+  handleSearchTermChange,
+  handleSearchReset,
+  handleSetSelectedTypes,
+  handleTypesClear,
 }: JobFiltersProps) {
-  const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = event.target;
+  const isFilterActive = Boolean(
+    selectedCities.length || selectedTypes.length || searchTerm.length,
+  );
 
-    const newSelectedCities = checked
-      ? [...selectedCities, value]
-      : selectedCities.filter((city) => city !== value);
-
-    setSelectedCities(newSelectedCities);
-  };
-
-  const handleTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = event.target;
-
-    const newSelectedTypes = checked
-      ? [...selectedTypes, value]
-      : selectedTypes.filter((type) => type !== value);
-
-    setSelectedTypes(newSelectedTypes);
-  };
-
-  // const handleFilterReset = () => {
-  //   setSelectedCities([]);
-  //   setSelectedTypes([]);
-  // };
+  const selectOptions = cities.map((city) => ({ value: city, label: city }));
 
   return (
-    <div className="job-filters-wrapper">
-      <a
-        href="#"
-        className="div-block-217 w-inline-block"
-        onClick={() => {
-          const dropdownEl = document.getElementsByClassName(
-            'filter-dropdown-wrapper',
-          )[0] as HTMLElement;
-          const display = dropdownEl.style.display;
-          if (!display || display === 'none') {
-            dropdownEl.style.display = 'block';
-          } else {
-            dropdownEl.style.display = 'none';
-          }
-        }}
+    <div className={styles.jobFilters}>
+      <button
+        className={[styles.clearFilter, isFilterActive ? styles.visible : null].join(' ')}
+        onClick={handleFilterReset}
+        disabled={!isFilterActive}
       >
-        <div className="text-block-21">Filters</div>
-        <div className="div-block-218">
-          <div className="chevron">
-            <div className="chevron-line top" />
-            <div className="chevron-line bottom" />
+        <IoMdClose />
+        Active Filter
+      </button>
+
+      <div className={[styles.rowCenter, styles.row].join(' ')}>
+        <div className={styles.typeFilter}>
+          <button
+            className={!selectedTypes.length ? styles.active : undefined}
+            onClick={handleTypesClear}
+          >
+            View All
+          </button>
+          {types.map((type) => (
+            <button
+              className={selectedTypes.includes(type) ? styles.active : undefined}
+              key={type}
+              value={type}
+              onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+                handleSetSelectedTypes(e as unknown as React.ChangeEvent<HTMLButtonElement>)
+              }
+            >
+              {type}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className={[styles.mobileFlexColumn, styles.row].join(' ')}>
+        <div className={styles.inputWrapper}>
+          <div className={[styles.row, styles.column].join(' ')}>
+            <div className={[styles.mobileHide, styles.row].join(' ')}>
+              <label>Search Filter</label>
+              <button onClick={handleSearchReset} value={''}>
+                Clear
+              </button>
+            </div>
+            <input
+              type="text"
+              placeholder="Search by title"
+              value={searchTerm}
+              onChange={handleSearchTermChange}
+            />
           </div>
         </div>
-      </a>
 
-      <div className="filter-dropdown-wrapper">
-        {types && types.length === 0 && (
-          <div className="job-filter-section">
-            <div className="heading-6">Refine by job type</div>
-            <div className="filter-checkboxes w-form">
-              {types.map((type) => {
-                return (
-                  <label key={type} className="w-checkbox filter-checkbox-wrapper">
-                    <div
-                      className={`w-checkbox-input w-checkbox-input--inputType-custom filter-checkbox ${
-                        selectedTypes.includes(type) ? 'w--redirected-checked' : ''
-                      }`}
-                    />
-                    <input
-                      type="checkbox"
-                      id={type}
-                      name={type}
-                      checked={selectedTypes.includes(type)}
-                      onChange={handleTypeChange}
-                      value={type}
-                    />
-                    <span className="filter-checkbox-label w-form-label">{type}</span>
-                  </label>
-                );
-              })}
+        <div className={styles.inputWrapper}>
+          <div className={[styles.row, styles.column].join(' ')}>
+            <div className={[styles.mobileHide, styles.row].join(' ')}>
+              <label>Location</label>
+              <button onClick={handlerCitiesClear}>Clear</button>
             </div>
-          </div>
-        )}
-
-        <div className="job-filter-section last-child">
-          <div className="heading-6">Refine by location</div>
-          <div className="filter-checkboxes w-form">
-            {cities.map((city) => {
-              return (
-                <label key={city} className="w-checkbox filter-checkbox-wrapper">
-                  <div
-                    className={`w-checkbox-input w-checkbox-input--inputType-custom filter-checkbox ${
-                      selectedCities.includes(city) ? 'w--redirected-checked' : ''
-                    }`}
-                  />
-                  <input
-                    type="checkbox"
-                    id={city}
-                    name={city}
-                    checked={selectedCities.includes(city)}
-                    onChange={handleCityChange}
-                    value={city}
-                  />
-                  <span className="filter-checkbox-label w-form-label">{city}</span>
-                </label>
-              );
-            })}
+            <Dropdown
+              options={selectOptions}
+              selected={selectedCities}
+              setSelected={handleSetSelectedCities}
+              classNames={[styles.dropdown]}
+              defaultText="Select a location"
+            />
           </div>
         </div>
       </div>
