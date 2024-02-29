@@ -11,10 +11,12 @@
   border-right: none;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: start;
-  gap: 1em;
   transition: background-color 0.3s ease-in-out;
+  line-height: 1em;
+  height: 6.75em;
+  box-sizing: unset;
 }
 
 .jobItem:first-of-type {
@@ -32,6 +34,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  padding: 0;
 }
 
 .jobItem h3,
@@ -39,8 +42,22 @@
   -webkit-line-clamp: 1;
 }
 
+.jobItem h3 {
+  font-size: 1.25em;
+  line-height: 1.25em;
+  font-weight: 600;
+}
+
+.jobItem h4 {
+  font-size: 1em;
+  line-height: 1em;
+  font-weight: 400;
+}
+
 .jobItem p {
   -webkit-line-clamp: 2;
+  font-size: 1em;
+  line-height: 1em;
 }
 
 .noResults {

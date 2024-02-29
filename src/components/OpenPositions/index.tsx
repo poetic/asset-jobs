@@ -45,7 +45,14 @@ export default function OpenPositions() {
     return <div>No jobs found</div>;
   }
 
-  const cities = Array.from(new Set(jobs.map((job) => job.location.name)));
+  // sort alphabetically by location name then by state
+  const cities = Array.from(new Set(jobs.map((job) => job.location.name)))
+    .sort((a, b) => a.localeCompare(b))
+    .sort((a, b) => {
+      const stateA = a.split(', ')[1];
+      const stateB = b.split(', ')[1];
+      return stateA.localeCompare(stateB);
+    });
 
   const types = Array.from(
     new Set(

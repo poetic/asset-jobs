@@ -12,6 +12,7 @@
   justify-content: stretch;
   width: calc(100% - 2px);
   border: 1px solid var(--quinary-color);
+  box-sizing: content-box;
 }
 
 .overflowMask {
@@ -23,7 +24,6 @@
 @media only screen and (max-width: 900px) {
   .appWrapper {
     padding: 1.5em 0.75em;
-    max-width: calc(100% - 1.5em);
   }
 
   .jobList {

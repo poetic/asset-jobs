@@ -28,6 +28,7 @@
 
 .resultsPerPage {
   border: 1px solid var(--quaternary-color);
+  font-size: 0.9em;
 }
 
 .resultsPerPage ul {

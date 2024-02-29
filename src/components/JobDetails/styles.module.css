@@ -27,11 +27,22 @@
 
 .jobDetailsHeader h1 {
   margin-bottom: 0.5em;
+  color: white;
+  font-size: 1.5em;
+  line-height: 1.5em;
 }
 
-.jobDetails h2 {
+.jobDetailsHeader h2 {
   font-weight: 600;
-  font-size: 1.25em;
+  font-size: 1em;
+  line-height: 1em;
+  color: white;
+}
+
+.jobDetailsHeader h3 {
+  font-size: 0.95em;
+  line-height: 0.95em;
+  color: white;
 }
 
 .jobDetailsHeader button {
@@ -42,13 +53,19 @@
   cursor: pointer;
   margin-top: 1em;
   font-size: 0.95em;
+  line-height: 0.95em;
 }
 
 .jobDetailsContent {
   padding: 1em 2em;
   overflow-y: scroll;
   flex-grow: 1;
+}
+
+.jobDetailsContent * {
   color: var(--quaternary-color);
+  line-height: 1.75em;
+  font-style: normal;
 }
 
 .jobDetailsContent::-webkit-scrollbar {
@@ -73,7 +90,9 @@
 .backArrow {
   height: 1.5em;
   width: 1.5em;
-  padding: 1em 0;
+  box-sizing: content-box;
+  overflow: unset;
+  padding: 0.5em 0;
   cursor: pointer;
 }
 
