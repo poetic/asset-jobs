@@ -17,9 +17,6 @@ export default function JobDetails({ job, setIsMobileJobSelected }: JobDetailsPr
 
   const [title, location, positionType, applyUrl, postingContent] = getJobDetails(job);
 
-  const contentBody = document.createElement('div');
-  contentBody.innerHTML = postingContent as string;
-
   return (
     <div className={styles.jobDetails}>
       <div className={styles.jobDetailsHeader}>
