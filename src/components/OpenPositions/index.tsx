@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { MoonLoader } from 'react-spinners';
 import { useQuery } from '@tanstack/react-query';
 
 import { JobDetails, JobFilters, JobList, PaginationControls } from '..';
@@ -29,11 +30,16 @@ export default function OpenPositions() {
   }, [data]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className={styles.loadingIndicator}>
+        <h1>Loading open positions...</h1>
+        <MoonLoader color="#000" loading={true} size={100} />
+      </div>
+    );
   }
 
   if (error || !data) {
-    return <div>Error: {String(error)}</div>;
+    return <div className={styles.errorText}>Error: {String(error)}</div>;
   }
 
   const {
@@ -45,8 +51,9 @@ export default function OpenPositions() {
     return <div>No jobs found</div>;
   }
 
-  // sort alphabetically by location name then by state
   const cities = Array.from(new Set(jobs.map((job) => job.location.name)))
+    .filter(Boolean)
+    .filter((city) => city.split(', ').length === 2)
     .sort((a, b) => a.localeCompare(b))
     .sort((a, b) => {
       const stateA = a.split(', ')[1];
