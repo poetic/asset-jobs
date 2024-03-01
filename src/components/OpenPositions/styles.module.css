@@ -46,6 +46,8 @@
 @media only screen and (max-width: 900px) {
   .appWrapper {
     padding: 1.5em 0.75em;
+    width: 100vw;
+    overflow: hidden;
   }
 
   .jobList {
