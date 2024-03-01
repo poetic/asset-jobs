@@ -23,13 +23,15 @@ export default function JobDetails({ job, setIsMobileJobSelected }: JobDetailsPr
   return (
     <div className={styles.jobDetails}>
       <div className={styles.jobDetailsHeader}>
-        <IoArrowBackSharp
-          className={[styles.showMobile, styles.backArrow].join(' ')}
-          onClick={() => setIsMobileJobSelected(false)}
-        />
-        <h1 onClick={() => setIsMobileJobSelected(false)}>{title}</h1>
-        <h2>{location}</h2>
-        <h3>{positionType}</h3>
+        <div className={styles.jobDetailsHeaderInfo}>
+          <IoArrowBackSharp
+            className={[styles.showMobile, styles.backArrow].join(' ')}
+            onClick={() => setIsMobileJobSelected(false)}
+          />
+          <h1 onClick={() => setIsMobileJobSelected(false)}>{title}</h1>
+          <h2>{location}</h2>
+          <h3>{positionType}</h3>
+        </div>
         <a href={applyUrl}>
           <button>Apply</button>
         </a>

@@ -11,13 +11,13 @@
 
 .jobDetailsHeader {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
   gap: 0.5em;
   background-color: var(--quaternary-color);
   color: white;
-  padding: 1em 2em;
+  padding: 1em 2em 2em;
 }
 
 .jobDetailsHeader * {
@@ -25,21 +25,21 @@
   font-weight: 400;
 }
 
-.jobDetailsHeader h1 {
+.jobDetailsHeaderInfo h1 {
   margin-bottom: 0.5em;
   color: white;
   font-size: 1.5em;
   line-height: 1.5em;
 }
 
-.jobDetailsHeader h2 {
+.jobDetailsHeaderInfo h2 {
   font-weight: 600;
   font-size: 1em;
   line-height: 1em;
   color: white;
 }
 
-.jobDetailsHeader h3 {
+.jobDetailsHeaderInfo h3 {
   font-size: 0.95em;
   line-height: 0.95em;
   color: white;
@@ -103,7 +103,7 @@
   }
 
   .jobDetailsHeader {
-    padding: 1em;
+    padding: 1em 1em 2em;
   }
 
   .showMobile {
