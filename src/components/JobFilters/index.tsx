@@ -47,7 +47,7 @@ export default function JobFilters({
         disabled={!isFilterActive}
       >
         <IoMdClose />
-        Active Filter
+        Clear Filter
       </button>
 
       <div className={[styles.rowCenter, styles.row].join(' ')}>
