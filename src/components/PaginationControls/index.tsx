@@ -48,7 +48,6 @@ export default function PaginationControls({
         >
           <IoArrowBackSharp />
         </button>
-        <span>{pageCount === 0 ? 'Page 0 of 0' : `Page ${currentPage} of ${pageCount}`}</span>
         <button
           onClick={handleNextPage}
           disabled={currentPage === pageCount || pageCount === 0}
