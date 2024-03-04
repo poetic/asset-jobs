@@ -75,3 +75,18 @@
     background-color: hsla(0, 0%, 96%, 1);
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .noResults {
+    height: 100%;
+    width: calc(50% - 1px);
+    border-right: 1px solid var(--quinary-color);
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    justify-content: start;
+    padding-top: 30em;
+  }
+}
