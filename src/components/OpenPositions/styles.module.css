@@ -13,6 +13,7 @@
   width: calc(100% - 2px);
   border: 1px solid var(--quinary-color);
   box-sizing: content-box;
+  position: relative;
 }
 
 .overflowMask {
@@ -37,9 +38,12 @@
   justify-content: center;
   gap: 2em;
   padding: 1em;
+  text-align: center;
 }
 
 .loadingIndicator h1 {
+  font-size: 2em;
+  line-height: 1.25em;
   color: var(--quaternary-color);
 }
 
